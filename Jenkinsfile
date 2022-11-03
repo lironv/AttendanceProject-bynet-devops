@@ -41,6 +41,7 @@ pipeline{
 		}
 		stage('Send scp files') {
 			steps {
+				
 				sshagent(credentials: ['test-server-ssh']) {
 				sh 'scp  -r "${WORKSPACE}/db" ec2-user@testserver:'
 				sh 'scp  "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
