@@ -40,8 +40,8 @@ pipeline{
 		}
 		stage('Send scp files') {
 			steps {
-				sh 'scp -i "~/Github/testserver" -r "${WORKSPACE}/db" ec2-user@testserver'
-				sh 'scp -i "~/Github/testserver" "${WORKSPACE}/docker-compose.yml" ec2-user@testserver'
+				sh 'scp -i "~/Github/testserver" -r "${WORKSPACE}/db" ec2-user@testserver:'
+				sh 'scp -i "~/Github/testserver" "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
 			}
 		}
 	}
