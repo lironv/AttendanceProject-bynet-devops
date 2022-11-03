@@ -49,7 +49,7 @@ pipeline{
 				scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
 				 docker ps 
 				 pwd
-				 
+				 docker login
 				 docker-compose up -d
 				
 				'''
