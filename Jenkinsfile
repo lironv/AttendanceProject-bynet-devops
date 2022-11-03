@@ -38,6 +38,11 @@ pipeline{
 				sh 'docker push lironv/attendance:latest'
 			}
 		}
+		stage('Send scp files') {
+			steps {
+				sh 'scp -i "~/Github/testserver" "/var/lib/jenkins/workspace/testpipe/dockercompose.yml" ec2-user@testserver
+			}
+		}
 	}
 
 	post {
