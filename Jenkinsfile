@@ -48,7 +48,8 @@ pipeline{
 				scp -r "${WORKSPACE}/db" ec2-user@testserver:
 				scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
 				 docker ps 
-				 docker images
+				 pwd
+				 
 				 docker-compose up -d
 				
 				'''
