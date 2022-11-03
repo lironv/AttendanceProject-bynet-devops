@@ -47,8 +47,10 @@ pipeline{
         			ssh-keyscan -t rsa,dsa testserver >> ~/.ssh/known_hosts
 				scp -r "${WORKSPACE}/db" ec2-user@testserver:
 				scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
-				ssh ec2-user@testserver: docker-compose up -d
-				ssh ec2-user@testserver: "docker-compose ps"
+				 docker ps 
+				 docker images
+				 docker-compose up -d
+				
 				'''
 				}
 			}
