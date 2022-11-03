@@ -43,7 +43,7 @@ pipeline{
 			steps {
 				shagent(credentials: ['ssh-key-test']) {
 				sh 'scp -r "${WORKSPACE}/db" ec2-user@testserver:'
-				sh 'scp -i "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
+				sh 'scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
 				}
 			}
 		}
