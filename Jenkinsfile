@@ -4,7 +4,7 @@ pipeline{
 
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('1')
-		TESTSERVER_CREDENTIALS=credentials('test-server-ssh')
+		TESTSERVER_CREDENTIALS=credentials('ssh-key-test')
 	}
 
 	stages {
@@ -41,8 +41,10 @@ pipeline{
 		}
 		stage('Send scp files') {
 			steps {
-				sh 'scp -i "testserver" -r "${WORKSPACE}/db" ec2-user@testserver:'
-				sh 'scp -i "testserver" "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
+				shagent(credentials: ['ssh-key-test']) {
+				sh 'scp -r "${WORKSPACE}/db" ec2-user@testserver:'
+				sh 'scp -i "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
+				}
 			}
 		}
 	}
