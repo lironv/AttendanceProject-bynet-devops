@@ -44,7 +44,7 @@ pipeline{
 				sshagent(credentials: ['ssh-key-test']) {
 				 sh '''
       				
-				scp -r "${WORKSPACE}/db" ec2-user@tes
+				scp -r "${WORKSPACE}/db" ec2-user@testserver:
 				scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
 				'''
 				}
