@@ -42,8 +42,12 @@ pipeline{
 		stage('Send scp files') {
 			steps {
 				shagent(credentials: ['ssh-key-test']) {
-				sh 'scp -r "${WORKSPACE}/db" ec2-user@testserver:'
-				sh 'scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:'
+				 sh '''
+      				[ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+          			ssh-keyscan -t rsa,dsa testserver >> ~/.ssh/known_hosts
+				scp -r "${WORKSPACE}/db" ec2-user@tes
+				scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
+				'''
 				}
 			}
 		}
