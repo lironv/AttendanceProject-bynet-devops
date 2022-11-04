@@ -3,7 +3,7 @@
 #Vars
 HOME_DIR="/home/ec2-user"
 JENKINS_PIPE="/var/lib/jenkins/workspace/testpipe"
-SSH_KEY_TEST="/var/lib/jenkins/.ssh/testserver"
+SSH_KEY_TEST="/home/ubuntu/.ssh/testserver"
 SSH_KEY_PROD="/var/lib/jenkins/.ssh/prodserver"
 
 machine=$1
@@ -17,7 +17,7 @@ ssh -i "${SSH_KEY_TEST}" ec2-user@${machine} "mkdir -p ${HOME_DIR}/final-project
 echo
 pwd
 echo "copying compose file to $machine"
-scp -i "${SSH_KEY_TEST}" "${JENKINS_PIPE}/docker-compose.yml" "ec2-user@${machine}:${HOME_DIR}/final-project"
+scp -i "${SSH_KEY_TEST}" "${JENKINS_PIPE}/docker-compose.yml" "ec2-user@${machine}:/final-project"
 echo "starting project"
 
 ssh -i "${SSH_KEY_TEST}" ${machine} "docker version; docker compose version; jq --version"
