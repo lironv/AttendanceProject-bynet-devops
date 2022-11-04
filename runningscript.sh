@@ -4,7 +4,7 @@
 HOME_DIR="/home/ubuntu"
 JENKINS_PIPE="/var/lib/jenkins/workspace/testpipe"
 SSH_KEY_TEST="/var/lib/jenkins/.ssh/testserver"
-SSH_KEY_PROD=""/var/lib/jenkins/.ssh/prodserver"
+SSH_KEY_PROD="/var/lib/jenkins/.ssh/prodserver"
 
 machine=$1
 
@@ -18,4 +18,4 @@ echo "copying compose file to $machine"
 ssh -i "${SSH_KEY_TEST}" ${machine} "mkdir -p ${HOME_DIR}/final-project"
 echo "starting project"
 
-ssh -i "${SSH_KEY_TEST}" ${machine} docker version; docker compose version; jq --version
+ssh -i "${SSH_KEY_TEST}" ${machine} "docker version; docker compose version; jq --version"
