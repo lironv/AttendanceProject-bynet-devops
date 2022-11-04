@@ -51,7 +51,7 @@ pipeline{
 				 ssh  ec2-user@testserver docker-compose up -d
 				 sleep 20
 				 ssh ec2-user@testserver docker container ls
-				
+				 ssh ec2-user@testserver docker-compose down
 				'''
 				}
 			}
