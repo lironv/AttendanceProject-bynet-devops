@@ -13,8 +13,9 @@ pipeline{
                 git branch: 'main',
                  credentialsId: '831181b1-4a6f-47bf-8c0c-076d1732d795',
                  url: 'git@github.com:lironv/privaterepotest.git'
-            }
-        }
+		    }
+        	}
+		
         
 		stage('Build') {
 
@@ -39,16 +40,9 @@ pipeline{
 				sh 'docker push lironv/attendance:latest'
 			}
 		}
-		stage('Send scp files') {
+		stage('Test') {
 			steps {
-				sshagent(credentials: ['ssh-key-test']) {
-				 sh '''
-      				 scp -r "${WORKSPACE}/db" ec2-user@testserver:
-				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
-				 ssh ec2-user@testserver "docker ps; pwd; docker login; docker-compose up -d; sleep 20; docker container ls; docker-compose down"
-				
-				'''
-				}
+			   sh 'bash runningscript.sh testserver'
 			}
 		}
 	}
