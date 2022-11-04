@@ -45,10 +45,10 @@ pipeline{
 				 sh '''
       				 scp -r "${WORKSPACE}/db" ec2-user@testserver:
 				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
-				 docker ps 
-				 ssh pwd ec2-user@testserver:
+				 ssh ec2-user@testserver: "docker ps"
+				 ssh ec2-user@testserver: pwd 
 				 docker login
-				 ssh docker-compose up -d ec2-user@testserver:
+				 ssh  ec2-user@testserver: "docker-compose up -d"
 				
 				'''
 				}
