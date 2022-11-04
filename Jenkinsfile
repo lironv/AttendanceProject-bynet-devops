@@ -48,10 +48,10 @@ pipeline{
 				 ssh ec2-user@testserver docker ps
 				 ssh  pwd 
 				 docker login
-				 ssh   docker-compose up -d
+				 docker-compose up -d
 				 sleep 20
-				 ssh docker container ls
-				 ssh docker-compose down
+				 docker container ls
+				 docker-compose down
 				'''
 				}
 			}
