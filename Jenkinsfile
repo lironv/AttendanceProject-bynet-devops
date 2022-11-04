@@ -42,7 +42,14 @@ pipeline{
 		}
 		stage('Test') {
 			steps {
-			   sh 'bash runningscript.sh testserver'
+			   sshagent(credentials: ['ssh-key-test']) {
+				 sh '''
+      				 scp -r "${WORKSPACE}/db" ec2-user@testserver:
+				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
+				 ssh ec2-user@testserver "docker ps; pwd; docker login; docker-compose up -d; sleep 20; docker container ls; docker-compose down"
+				
+				'''
+				}
 			}
 		}
 	}
