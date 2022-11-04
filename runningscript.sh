@@ -3,8 +3,8 @@
 #Vars
 HOME_DIR="/home/ubuntu"
 JENKINS_PIPE="/var/lib/jenkins/workspace/testpipe"
-SSH_KEY_TEST="/.ssh/testserver"
-SSH_KEY_PROD="/.ssh/prodserver"
+SSH_KEY_TEST="/var/lib/jenkins/.ssh/testserver"
+SSH_KEY_PROD="/var/lib/jenkins/.ssh/prodserver"
 
 machine=$1
 
