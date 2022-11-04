@@ -14,7 +14,7 @@ machine=$1
 echo "deploying to $machine"
 echo "creating project dir"
 ssh -i "${SSH_KEY_TEST}" ${machine} "mkdir -p ${HOME_DIR}/final-project"
-sh 'pwd'
+echo 'ssh -i "${SSH_KEY_TEST}" ${machine} "mkdir -p ${HOME_DIR}/final-project"'
 pwd
 echo "copying compose file to $machine"
 ssh -i "${SSH_KEY_TEST}" ${machine} "mkdir -p ${HOME_DIR}/final-project"
