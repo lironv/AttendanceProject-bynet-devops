@@ -58,8 +58,8 @@ pipeline{
 			   sshagent(credentials: ['prodserver']) {
 				 sh '''
       				 scp -r "${WORKSPACE}/db" ec2-user@prodserver:
-				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
-				 ssh ec2-user@testserver "docker login; docker-compose up -d; sleep 20"
+				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
+				 ssh ec2-user@prodserver "docker login; docker-compose up -d; sleep 20"
 				'''
 				}
 			}
