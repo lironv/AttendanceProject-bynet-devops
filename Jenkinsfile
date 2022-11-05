@@ -60,7 +60,7 @@ pipeline{
 				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
 				 ssh ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
 				 '''
-				}
+				
 			}
 		}
 	}
