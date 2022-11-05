@@ -56,7 +56,7 @@ pipeline{
 		stage('StartingProdServer') {
 			steps {
 			   	 sh '''
-      				 scp -i "/var/lib/jenkins/.ssh/prodserver" -r "${WORKSPACE}/db" ec2-user@prodserver:
+      				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no -r "${WORKSPACE}/db" ec2-user@prodserver:
 				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
 				 ssh ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
 				 '''
