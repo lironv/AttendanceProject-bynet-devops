@@ -15,8 +15,13 @@ fi
 
 
 #check curl to server.
-ping -c 1 localhost:5000 echo "ping to server failed" || echo "ping to server success"
+status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:5000)
 
+if [[ "$status_code" -ne 200 ]] ; then
+  echo "Site status changed to $status_code" | echo "fail "
+else
+  exit 0
+fi
 
 
 #check if containers are live.
