@@ -4,7 +4,6 @@ pipeline{
 
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('1')
-		TESTSERVER_CREDENTIALS=credentials('ssh-key-test')
 	}
 
 	stages {
@@ -54,11 +53,22 @@ pipeline{
 				}
 			}
 		}
+		stage('StartingProdServer') {
+			steps {
+			   sshagent(credentials: ['prodserver']) {
+				 sh '''
+      				 scp -r "${WORKSPACE}/db" ec2-user@prodserver:
+				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
+				 ssh ec2-user@testserver "docker login; docker-compose up -d; sleep 20"
+				'''
+				}
+			}
+		}
 	}
 
 	post {
 		always {
-			sh 'docker logout'
+			sh 'docker ps'
 		}
 	}
 
