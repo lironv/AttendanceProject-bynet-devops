@@ -55,9 +55,8 @@ pipeline{
 		}
 		stage('StartingProdServer') {
 			steps {
-			   sshagent(['prodserver']) {
-				 sh '''
-      				 scp -r "${WORKSPACE}/db" ec2-user@prodserver:
+			   	 
+      				 scp -i "${WORKSPACE}/.ssh/prodserver" -r "${WORKSPACE}/db" ec2-user@prodserver:
 				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
 				 ssh ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
 				 '''
