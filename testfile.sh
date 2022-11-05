@@ -18,7 +18,7 @@ fi
 status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:5000)
 
 if [[ "$status_code" -ne 200 ]] ; then
-  echo "Site status changed to $status_code" | echo "fail "
+  echo "Site status changed to $status_code"
   exit 1
 else
   echo "successful task, curl localhost:5000"
