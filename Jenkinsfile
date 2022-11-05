@@ -49,18 +49,18 @@ pipeline{
 				 ssh ec2-user@testserver "chmod u+x ./testfile.sh"
 				 ssh ec2-user@testserver "./testfile.sh"
 				 ssh ec2-user@testserver "docker-compose down"
-				'''
+				 '''
 				}
 			}
 		}
 		stage('StartingProdServer') {
 			steps {
-			   sshagent(credentials: ['prodserver']) {
+			   sshagent(['prodserver']) {
 				 sh '''
-      				 
+      				 scp -r "${WORKSPACE}/db" ec2-user@prodserver:
 				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
 				 ssh ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
-				'''
+				 '''
 				}
 			}
 		}
