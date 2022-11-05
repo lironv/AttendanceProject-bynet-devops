@@ -7,7 +7,7 @@ then
 else
     echo "$filename has not been found"
 fi
-ping -c 1 127.0.0.1:5000 &> /dev/null && echo success || echo fail
+ping -c 1 testserver echo "ping to server failed" || echo "ping to server success"
 
 CONTAINER_NAME_APP='ec2-user_app_1'
 CONTAINER_NAME_DB='ec2-user_db_1'
