@@ -57,8 +57,8 @@ pipeline{
 			steps {
 			   	 sh '''
       				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no -r "${WORKSPACE}/db" ec2-user@prodserver:
-				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
-				 ssh ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
+				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
+				 ssh -i "/var/lib/jenkins/.ssh/prodserver" ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
 				 '''
 				
 			}
