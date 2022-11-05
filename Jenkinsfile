@@ -40,14 +40,15 @@ pipeline{
 				sh 'docker push lironv/attendance:latest'
 			}
 		}
-		stage('Test') {
+		stage('StartingTestServer') {
 			steps {
 			   sshagent(credentials: ['ssh-key-test']) {
 				 sh '''
       				 scp -r "${WORKSPACE}/db" ec2-user@testserver:
 				 scp "${WORKSPACE}/docker-compose.yml" ec2-user@testserver:
-				 ssh ec2-user@testserver "docker ps; pwd; docker login; docker-compose up -d; sleep 20; docker container ls; docker-compose down"
-				
+				 ssh ec2-user@testserver "docker ps; pwd; docker login; docker-compose up -d; sleep 20; docker container ls"
+				 ssh ec2-user@testserver "./testfile.sh"
+				 ssh ec2-user@testserver "docker-compose down"
 				'''
 				}
 			}
