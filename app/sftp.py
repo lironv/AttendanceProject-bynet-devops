@@ -3,8 +3,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-print(os.environ['REMOT_UNAME'])
+print(os.environ.get['REMOT_UNAME'])
 
+print(os.environ.get['REMOT_PASS'])
 for item, value in os.environ.items():
     print('{}: {}'.format(item, value))
     
