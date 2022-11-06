@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+print(os.environ['REMOT_UNAME'])
+
 def download_csvs():
   localFilePath = "/app"
   cnopts = pysftp.CnOpts()
