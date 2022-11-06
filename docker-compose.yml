@@ -9,7 +9,8 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
   app:
-    image: lironv/attendance:v1.1
+    build: ./app
+    image: lironv/attendance:latest
     links:
       - db
     ports:
