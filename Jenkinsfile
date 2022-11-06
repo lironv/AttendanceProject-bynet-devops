@@ -45,7 +45,7 @@ pipeline{
 				 sh '''
       				 scp -r "${WORKSPACE}/db" ec2-user@testserver:
 				 scp "${WORKSPACE}/docker-compose.yml" "${WORKSPACE}/testfile.sh" ec2-user@testserver:
-				 ssh ec2-user@testserver "docker login; docker-compose up -d --no-build; sleep 70"
+				 ssh ec2-user@testserver "mkdir app; docker login; docker-compose up -d --no-build; sleep 60"
 				 ssh ec2-user@testserver "chmod u+x ./testfile.sh"
 				 ssh ec2-user@testserver "./testfile.sh"
 				 ssh ec2-user@testserver "docker-compose down; docker volume prune -f"
