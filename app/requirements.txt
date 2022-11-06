@@ -4,3 +4,4 @@ pandas
 pysftp
 jellyfish
 numpy
+python-dotenv
