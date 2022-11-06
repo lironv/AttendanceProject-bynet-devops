@@ -5,9 +5,14 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
+       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./db:/docker-entrypoint-initdb.d/:ro
+    healthcheck:
+       test: ["CMD", "mysqladmin" ,"ping", "-h", "db"]
+       timeout: 25s
+       retries: 3 
+       
   app:
     build: ./app
     image: lironv/attendance:latest
