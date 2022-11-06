@@ -44,7 +44,7 @@ pipeline{
 			   sshagent(credentials: ['ssh-key-test']) {
 				 sh '''
       				 scp -r "${WORKSPACE}/db" ec2-user@testserver:
-				 scp "${WORKSPACE}/docker-compose.yml" "${WORKSPACE}/testfile.sh" ec2-user@testserver:
+				 scp "${WORKSPACE}/docker-compose.yml" "${WORKSPACE}/testfile.sh" "${WORKSPACE}/.env" ec2-user@testserver:
 				 ssh ec2-user@testserver "mkdir app; docker login;docker pull lironv/attendance:latest; docker-compose up -d --no-build; sleep 80"
 				 ssh ec2-user@testserver "chmod u+x ./testfile.sh"
 				 ssh ec2-user@testserver "./testfile.sh"
@@ -58,7 +58,7 @@ pipeline{
 			steps {
 			   	 sh '''
       				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no -r "${WORKSPACE}/db" ec2-user@prodserver:
-				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no "${WORKSPACE}/docker-compose.yml" ec2-user@prodserver:
+				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no "${WORKSPACE}/docker-compose.yml" "${WORKSPACE}/.env" ec2-user@prodserver:
 				 ssh -i "/var/lib/jenkins/.ssh/prodserver" ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
 				 '''
 				
