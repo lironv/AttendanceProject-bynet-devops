@@ -25,17 +25,13 @@ pipeline{
 		stage('Test') {
 			steps {
 			   sshagent(credentials: ['ssh-key-test']) {
-				 sh """bash ./runningscript.sh test"""
+				 sh """bash ./runningscript.sh testserver"""
 				}
 			}
 		}
 		stage('StartingProdServer') {
 			steps {
-			   	 sh '''
-      				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no -r "${WORKSPACE}/db" ec2-user@prodserver:
-				 scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no "${WORKSPACE}/docker-compose.yml" $ENVFILE_LOCATION ec2-user@prodserver:
-				 ssh -i "/var/lib/jenkins/.ssh/prodserver" ec2-user@prodserver "docker login; docker-compose up -d; sleep 5"
-				 '''
+			   	 sh """bash ./runningscript.sh prodserver"""
 				
 			}
 		}
