@@ -29,7 +29,7 @@ pipeline{
 				}
 			}
 		}
-		stage('StartingProdServer') {
+		stage('Prod') {
 			steps {
 			   	 sh """bash ./runningscript.sh prodserver"""
 				
