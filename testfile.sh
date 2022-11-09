@@ -1,7 +1,7 @@
 
 #!/bin/bash
 ################
-#testfileiuhiuhiuhiuhiuh
+#testfile
 ################
 
 #check if files are located in machine 
