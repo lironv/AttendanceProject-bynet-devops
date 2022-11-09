@@ -17,8 +17,9 @@ echo "deploying to $machine"
 echo "creating project dir"
 
 if [ $machine == "prodserver" ]; then
-scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no -r "$WORKSPACE/db" ec2-user@$machine:
-scp -i "/var/lib/jenkins/.ssh/prodserver" -o StrictHostKeyChecking=no "$WORKSPACE/docker-compose.yml" $ENVFILE_LOCATION ec2-user@$machine:
+rsync -Pav -e "ssh -i /var/lib/jenkins/.ssh/prodserver" ec2-user@$machine:/$HOME_DIR/db "$WORKSPACE/db"
+rsync -Pav -e "ssh -i /var/lib/jenkins/.ssh/prodserver" ec2-user@$machine:/docker-compose.yml $ENVFILE_LOCATION $WORKSPACE/docker-compose.yml
+
 ssh -i "/var/lib/jenkins/.ssh/prodserver" ec2-user@$machine "mkdir -p app;docker login;docker pull lironv/attendance:latest; docker-compose up -d --no-build; sleep 5"
 fi
 
