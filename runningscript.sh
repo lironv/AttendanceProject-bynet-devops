@@ -25,12 +25,12 @@ fi
 
 
 
-
+ rsync /home/tin/file2.txt /home/tin/file3.txt /home/tin/Documents
 
 #if the machine is test, copying and running tests on test-server 
 if [ $machine == "testserver" ]; then
    rsync -Pav -e "ssh -i /var/lib/jenkins/.ssh/testserver" ec2-user@$machine:/$HOME_DIR/db "$WORKSPACE/db"
-   rsync -Pav -e "ssh -i /var/lib/jenkins/.ssh/testserver" ec2-user@$machine:/ $ENVFILE_LOCATION $WORKSPACE/docker-compose.yml
+   rsync -e "ssh -i /var/lib/jenkins/.ssh/testserver" ec2-user@$machine:/ $ENVFILE_LOCATION $WORKSPACE/docker-compose.yml
    rsync -Pav -e "ssh -i /var/lib/jenkins/.ssh/testserver" ec2-user@$machine:/ $ENVFILE_LOCATION $WORKSPACE/docker-compose.yml $WORKSPACE/testfile.sh
    
    ssh ec2-user@$machine "mkdir -p app; docker login;docker pull lironv/attendance:latest; docker-compose up -d --no-build;
