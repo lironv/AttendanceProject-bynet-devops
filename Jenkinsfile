@@ -12,7 +12,7 @@ pipeline{
 		stage('Build') {
 			steps {
 			   git branch: 'main',
-                           credentialsId: '831181b1-4a6f-47bf-8c0c-076d1732d795',
+                              credentialsId: '831181b1-4a6f-47bf-8c0c-076d1732d795',
                  	   url: 'git@github.com:lironv/privaterepotest.git'
 			   dir("app") {
                 		sh "pwd"
