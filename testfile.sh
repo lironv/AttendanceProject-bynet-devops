@@ -15,7 +15,7 @@ fi
 
 
 #check curl to server.
-status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:5000)
+status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:5001)
 
 if [[ "$status_code" -ne 200 ]] ; then
   echo "Site status changed to $status_code"
