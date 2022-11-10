@@ -15,9 +15,8 @@ fi
 
 
 #check curl to server.
-status_code=$(curl --write-out %{http_code} --silent --output /dev/null localhost:5001)
-
-if [[ "$status_code" -ne 200 ]] ; then
+status_code=`curl -s -I ${URL} | grep HTTP | awk {'print $2'}`
+if [[ "$status_code" -eq 200 ]] ; then
   echo "Site status changed to $status_code"
   exit 1
 else
