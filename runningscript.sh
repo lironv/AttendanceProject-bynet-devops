@@ -27,6 +27,6 @@ if [ $machine == "testserver" ]; then
    scp -r "$WORKSPACE/db" ec2-user@$machine:
    scp "$WORKSPACE/docker-compose.yml" "$WORKSPACE/testfile.sh" $ENVFILE_LOCATION ec2-user@$machine:
    ssh ec2-user@$machine "mkdir -p app; docker login;docker pull lironv/attendance:latest; docker-compose up -d --no-build; 
-   sleep 60;chmod u+x ./testfile.sh; ./testfile.sh;sleep 5; docker-compose down; docker volume prune -f"
+   sleep 60;bash -xe ./testfile.sh;sleep 5; docker-compose down; docker volume prune -f"
 fi
 
