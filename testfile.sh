@@ -15,7 +15,7 @@ fi
 
 
 #check curl to server.
-status_code=`curl -s -I ${status_code} | grep HTTP | awk {'print $2'}`
+status_code=`curl -s -I ${localhost:5001} | grep HTTP | awk {'print $2'}`
 if [[ $status_code -eq 200 ]] ; then
   echo "Site status changed to $status_code"
   exit 1
