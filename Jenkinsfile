@@ -24,13 +24,13 @@ pipeline{
 		stage('Test') {
 			steps {
 			   sshagent(credentials: ['ssh-key-test']) {
-				 sh """bash ./runningscript.sh testserver"""
+				 sh """bash -ex ./runningscript.sh testserver"""
 				}
 			}
 		}
 		stage('Prod') {
 			steps {
-			   	 sh """bash ./runningscript.sh prodserver"""
+			   	 sh """bash -xe ./runningscript.sh prodserver"""
 				
 			}
 		}
