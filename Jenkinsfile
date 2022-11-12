@@ -12,7 +12,7 @@ pipeline{
 		stage('Build') {
 			steps {
 			  checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], 
-				    userRemoteConfigs: [[credentialsId: '831181b1-4a6f-47bf-8c0c-076d1732d795', url: 'git@github.com:lironv/privaterepotest.git']]])
+				    userRemoteConfigs: [[credentialsId: '831181b1-4a6f-47bf-8c0c-076d1732d795', url: 'git@github.com:lironv/AttendanceProject-bynet-devops.git']]])
 			   dir("app") {
                 		sh "pwd"
                 		sh 'docker build -t lironv/attendance:latest .'
