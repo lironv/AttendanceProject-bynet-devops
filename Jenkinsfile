@@ -44,6 +44,7 @@ pipeline{
 		always {
 			sshagent(credentials: ['ssh-key-test']) {
 				 sh """bash  ./cleanscript.sh """
+				 sh 'docker logout'
 				}
 		}
 	}
