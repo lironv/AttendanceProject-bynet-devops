@@ -10,19 +10,20 @@ web application based on flask, mysql deployed with docker compose.
 Clone the repository, you can paste the link below in your terminal
 
 ```bash
-  git clone https://github.com/lironv/attendanceproject.git
+  git clone https://github.com/lironv/AttendanceProject-bynet-devops
+  
 ```
 *you do need the environment variables file (.env) for the project to work on your system*
 *add the .env file inside the attendence folder 
 
 ```bash
-  mv .env ./attendanceproject/attendance
+  mv .env ./AttendanceProject-bynet-devops/
 ```
 
-after that, enter the "attendance" folder inside, and use the docker-compose command
+after that, enter the "AttendanceProject-bynet-devops" folder inside, and use the docker-compose command
 
 ```bash
-   cd ./attendanceproject/attendance
+   cd ./AttendanceProject-bynet-devops/
    docker-compose up -d
 ```
 
