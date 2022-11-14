@@ -42,7 +42,9 @@ pipeline{
 
 	post {
 		always {
-			sh 'docker ps'
+			sshagent(credentials: ['ssh-key-test']) {
+				 sh """bash  ./cleanscript.sh """
+				}
 		}
 	}
 
