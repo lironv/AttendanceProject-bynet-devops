@@ -30,5 +30,5 @@ if [ $machine == "testserver" ]; then
    ssh ec2-user@$machine "mkdir -p app; docker login;docker pull lironv/attendance:latest; docker-compose up -d --no-build;sleep 70"
    echo "start testing process"
    ssh ec2-user@$machine "set -e; bash testfile.sh;sleep 5; docker-compose down;sleep 5; docker image rm lironv/attendance:latest; docker volume prune -f"
-   
+   echo "containers has been downed and images + volumes has been cleaned "
 fi
