@@ -15,7 +15,7 @@ fi
 
 
 #check curl to server.
-status_code=`curl -s -I localhost:5000 | grep HTTP | awk {'print $2'}`
+status_code=`curl -s -I localhost:5001 | grep HTTP | awk {'print $2'}`
 if [[ $status_code -eq 200 ]] ; then
    echo "successful task, curl localhost:5000"
 
