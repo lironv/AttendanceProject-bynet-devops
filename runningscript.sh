@@ -1,5 +1,5 @@
 #Deploy final project(ex4) into the main servers (Test and Prod)
-#Vars.
+#Vars...
 HOME_DIR="/home/ec2-user"
 JENKINS_PIPE="/var/lib/jenkins/workspace/testpipe"
 SSH_KEY_TEST="${HOME_DIR}/.ssh/testserver"
