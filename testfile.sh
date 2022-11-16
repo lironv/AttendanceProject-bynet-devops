@@ -20,7 +20,7 @@ if [[ $status_code -eq 200 ]] ; then
    echo "successful task, curl localhost:5000"
 
 else
-   echo "Site status changed to $status_code"
+   echo "error $status_code, site didnt deploy on test server"
   exit 1
 fi
 
